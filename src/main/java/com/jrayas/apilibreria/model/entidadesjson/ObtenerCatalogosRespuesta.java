@@ -17,4 +17,5 @@ public class ObtenerCatalogosRespuesta {
 	private List<Autor> autores;
 	private List<Genero> generos;
 	private List<Idioma> idiomas;
+	private List<Editorial> editoriales;
 }
