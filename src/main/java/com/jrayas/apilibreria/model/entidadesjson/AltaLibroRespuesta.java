@@ -1,4 +1,4 @@
-package com.jrayas.apilibreria.model;
+package com.jrayas.apilibreria.model.entidadesjson;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,7 +1,7 @@
 package com.jrayas.apilibreria.servicios;
 
-import com.jrayas.apilibreria.model.AltaLibroPeticion;
-import com.jrayas.apilibreria.model.AltaLibroRespuesta;
+import com.jrayas.apilibreria.model.entidadesjson.AltaLibroPeticion;
+import com.jrayas.apilibreria.model.entidadesjson.AltaLibroRespuesta;
 
 /**
  * Servicio de alta de libros

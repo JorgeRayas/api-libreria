@@ -1,4 +1,4 @@
-package com.jrayas.apilibreria.model;
+package com.jrayas.apilibreria.model.entidadesbd;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

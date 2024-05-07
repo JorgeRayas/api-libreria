@@ -8,8 +8,8 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
-import com.jrayas.apilibreria.model.Autor;
-import com.jrayas.apilibreria.model.Libro;
+import com.jrayas.apilibreria.model.entidadesbd.Autor;
+import com.jrayas.apilibreria.model.entidadesjson.Libro;
 import com.jrayas.apilibreria.repositorios.AltaLibroRepositorio;
 
 @Repository("altaLibroRepositorio")

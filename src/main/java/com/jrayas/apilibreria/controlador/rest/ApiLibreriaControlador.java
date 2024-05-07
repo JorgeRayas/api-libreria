@@ -7,24 +7,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jrayas.apilibreria.model.AltaLibroPeticion;
-import com.jrayas.apilibreria.model.AltaLibroRespuesta;
+import com.jrayas.apilibreria.model.entidadesjson.AltaLibroPeticion;
+import com.jrayas.apilibreria.model.entidadesjson.AltaLibroRespuesta;
+import com.jrayas.apilibreria.model.entidadesjson.ObtenerCatalogosRespuesta;
 import com.jrayas.apilibreria.servicios.AltaLibroServicio;
+import com.jrayas.apilibreria.servicios.ObtenerCatalogosServicio;
 
 @RestController
 public class ApiLibreriaControlador {
-    
-    private AltaLibroServicio altaLibroServicio;
-    
-    public ApiLibreriaControlador(
-            @Autowired @Qualifier("altaLibroServicio") AltaLibroServicio altaLibroServicio) {
-        this.altaLibroServicio = altaLibroServicio;
-    }
-    
-    @GetMapping("/libro")
-    public ResponseEntity<AltaLibroRespuesta> altaLibro() {
-        return new ResponseEntity<>(
-                altaLibroServicio.altaLibro(AltaLibroPeticion.builder().build()), HttpStatus.OK);
-    }
-    
+
+	private AltaLibroServicio servAltaLibro;
+	private ObtenerCatalogosServicio servObtenerCatalogos;
+
+	public ApiLibreriaControlador(@Autowired @Qualifier("altaLibroServicio") AltaLibroServicio servAltaLibroServicio,
+			@Autowired @Qualifier("obtenerCatalogosServicio") ObtenerCatalogosServicio servObtenerCatalogos) {
+		this.servAltaLibro = servAltaLibroServicio;
+		this.servObtenerCatalogos = servObtenerCatalogos;
+	}
+
+	@GetMapping("/catalogos")
+	public ResponseEntity<ObtenerCatalogosRespuesta> obtenerCatalogos() {
+		return new ResponseEntity<>(servObtenerCatalogos.obtenerCatalogos(), HttpStatus.OK);
+	}
+
+	@GetMapping("/libro")
+	public ResponseEntity<AltaLibroRespuesta> altaLibro() {
+		return new ResponseEntity<>(servAltaLibro.altaLibro(AltaLibroPeticion.builder().build()), HttpStatus.OK);
+	}
+
 }
