@@ -1,5 +1,7 @@
 package com.jrayas.apilibreria.servicios;
 
+import org.apache.coyote.BadRequestException;
+
 import com.jrayas.apilibreria.model.entidadesjson.AltaLibroPeticion;
 import com.jrayas.apilibreria.model.entidadesjson.AltaLibroRespuesta;
 
@@ -9,5 +11,5 @@ import com.jrayas.apilibreria.model.entidadesjson.AltaLibroRespuesta;
  */
 public interface AltaLibroServicio {
     
-    public AltaLibroRespuesta altaLibro(AltaLibroPeticion altaLibroPeticion);
+    public AltaLibroRespuesta altaLibro(AltaLibroPeticion altaLibroPeticion) throws BadRequestException;
 }

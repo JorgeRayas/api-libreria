@@ -1,10 +1,13 @@
 package com.jrayas.apilibreria.controlador.rest;
 
+import org.apache.coyote.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jrayas.apilibreria.model.entidadesjson.AltaLibroPeticion;
@@ -30,9 +33,10 @@ public class ApiLibreriaControlador {
 		return new ResponseEntity<>(servObtenerCatalogos.obtenerCatalogos(), HttpStatus.OK);
 	}
 
-	@GetMapping("/libro")
-	public ResponseEntity<AltaLibroRespuesta> altaLibro() {
-		return new ResponseEntity<>(servAltaLibro.altaLibro(AltaLibroPeticion.builder().build()), HttpStatus.OK);
+	@PostMapping("/libro")
+	public ResponseEntity<AltaLibroRespuesta> altaLibro(@RequestBody AltaLibroPeticion peticion)
+			throws BadRequestException {
+		return new ResponseEntity<>(servAltaLibro.altaLibro(peticion), HttpStatus.OK);
 	}
 
 }
