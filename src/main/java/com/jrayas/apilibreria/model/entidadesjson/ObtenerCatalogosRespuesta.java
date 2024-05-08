@@ -2,8 +2,6 @@ package com.jrayas.apilibreria.model.entidadesjson;
 
 import java.util.List;
 
-import com.jrayas.apilibreria.model.entidadesjson.Autor;
-
 import lombok.Builder;
 import lombok.Data;
 
