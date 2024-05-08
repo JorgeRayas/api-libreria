@@ -1,11 +1,11 @@
 package com.jrayas.apilibreria.repositorios.implementaciones;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.dao.DataAccessException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -29,11 +29,10 @@ public class ObtenerCatalogosRepositorioImpl implements ObtenerCatalogosReposito
 	public List<Autor> obtenerAutores() {
 		List<Autor> listAutor;
 		try {
-			listAutor = jdbcTemplate.query("SELECT PK_AUTOR, NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO FROM AUTORES ORDER BY 1",
-					new Autor());
-		} catch (DataAccessException e) {
-			listAutor = Collections.emptyList();
-			e.printStackTrace();
+			listAutor = jdbcTemplate.query(
+					"SELECT PK_AUTOR, NOMBRE, APELLIDO_PATERNO, APELLIDO_MATERNO FROM AUTORES ORDER BY 1", new Autor());
+		} catch (EmptyResultDataAccessException e) {
+			throw new NoSuchElementException("No se encontraron datos de autores");
 		}
 		return listAutor;
 	}
@@ -42,11 +41,9 @@ public class ObtenerCatalogosRepositorioImpl implements ObtenerCatalogosReposito
 	public List<Idioma> obtenerIdiomas() {
 		List<Idioma> listIdioma;
 		try {
-			listIdioma = jdbcTemplate.query("SELECT PK_IDIOMA, IDIOMA FROM IDIOMAS ORDER BY 1",
-					new Idioma());
-		} catch (DataAccessException e) {
-			listIdioma = Collections.emptyList();
-			e.printStackTrace();
+			listIdioma = jdbcTemplate.query("SELECT PK_IDIOMA, IDIOMA FROM IDIOMAS ORDER BY 1", new Idioma());
+		} catch (EmptyResultDataAccessException e) {
+			throw new NoSuchElementException("No se encontraron datos de idiomas");
 		}
 		return listIdioma;
 	}
@@ -55,24 +52,21 @@ public class ObtenerCatalogosRepositorioImpl implements ObtenerCatalogosReposito
 	public List<Genero> obtenerGeneros() {
 		List<Genero> listGeneros;
 		try {
-			listGeneros = jdbcTemplate.query("SELECT PK_GENERO, GENERO FROM GENEROS ORDER BY 1",
-					new Genero());
-		} catch (DataAccessException e) {
-			listGeneros = Collections.emptyList();
-			e.printStackTrace();
+			listGeneros = jdbcTemplate.query("SELECT PK_GENERO, GENERO FROM GENEROS ORDER BY 1", new Genero());
+		} catch (EmptyResultDataAccessException e) {
+			throw new NoSuchElementException("No se encontraron datos de géneros");
 		}
 		return listGeneros;
 	}
-	
+
 	@Override
 	public List<Editorial> obtenerEditoriales() {
 		List<Editorial> listEditoriales;
 		try {
 			listEditoriales = jdbcTemplate.query("SELECT PK_EDITORIAL, EDITORIAL FROM EDITORIALES ORDER BY 1",
 					new Editorial());
-		} catch (DataAccessException e) {
-			listEditoriales = Collections.emptyList();
-			e.printStackTrace();
+		} catch (EmptyResultDataAccessException e) {
+			throw new NoSuchElementException("No se encontraron datos de editoriales");
 		}
 		return listEditoriales;
 	}
