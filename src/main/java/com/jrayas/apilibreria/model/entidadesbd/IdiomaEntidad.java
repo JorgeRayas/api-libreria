@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Genero implements RowMapper<Genero> {
+public class IdiomaEntidad implements RowMapper<IdiomaEntidad> {
 	private Integer id;
 	private String nombre;
 
 	@Override
-	public Genero mapRow(ResultSet rs, int rowNum) throws SQLException {
-		return new Genero(rs.getInt("PK_GENERO"), rs.getString("GENERO"));
+	public IdiomaEntidad mapRow(ResultSet rs, int rowNum) throws SQLException {
+		return new IdiomaEntidad(rs.getInt("PK_IDIOMA"), rs.getString("IDIOMA"));
 	}
 }
