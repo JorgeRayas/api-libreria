@@ -2,17 +2,17 @@ package com.jrayas.apilibreria.repositorios;
 
 import java.util.List;
 
-import com.jrayas.apilibreria.model.entidadesbd.Autor;
-import com.jrayas.apilibreria.model.entidadesbd.Editorial;
-import com.jrayas.apilibreria.model.entidadesbd.Genero;
-import com.jrayas.apilibreria.model.entidadesbd.Idioma;
+import com.jrayas.apilibreria.model.entidadesbd.AutorEntidad;
+import com.jrayas.apilibreria.model.entidadesbd.EditorialEntidad;
+import com.jrayas.apilibreria.model.entidadesbd.GeneroEntidad;
+import com.jrayas.apilibreria.model.entidadesbd.IdiomaEntidad;
 
 public interface ObtenerCatalogosRepositorio {
-	public List<Autor> obtenerAutores();
+	public List<AutorEntidad> obtenerAutores();
 
-	public List<Idioma> obtenerIdiomas();
+	public List<IdiomaEntidad> obtenerIdiomas();
 
-	public List<Genero> obtenerGeneros();
+	public List<GeneroEntidad> obtenerGeneros();
 	
-	public List<Editorial> obtenerEditoriales();
+	public List<EditorialEntidad> obtenerEditoriales();
 }
