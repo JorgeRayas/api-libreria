@@ -1,4 +1,4 @@
-package com.jrayas.apilibreria.model.entidadesjson;
+package com.jrayas.apilibreria.model.entidadesbd;
 
 import java.time.LocalDate;
 
@@ -11,10 +11,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Libro {
-	private Integer id;
+public class LibroEntidad {
+    private Integer id;
     private String clave;
-    private String titulo;
+	private String titulo;
     private Integer autor;
     private Integer genero;
     private LocalDate fechaPublicacion;

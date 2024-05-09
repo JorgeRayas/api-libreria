@@ -6,8 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.jrayas.apilibreria.model.entidadesjson.AltaLibroPeticion;
 import com.jrayas.apilibreria.model.entidadesjson.Libro;
 import com.jrayas.apilibreria.repositorios.ValidacionesRepositorio;
+import com.jrayas.apilibreria.servicios.LibroValidacionesServicio;
 
 @Service("libroValidacionesServicio")
 public class LibroValidacionesServicioImpl implements LibroValidacionesServicio {
@@ -20,8 +22,19 @@ public class LibroValidacionesServicioImpl implements LibroValidacionesServicio 
 	}
 
 	@Override
-	public void validarLibro(Libro libro) throws BadRequestException {
+	public void validarPeticionLibro(AltaLibroPeticion peticion) throws BadRequestException {
 
+		if (peticion == null) {
+			throw new BadRequestException("Los datos de la petición no son correctos");
+		}
+		Libro libro = peticion.getLibro();
+		validarLibro(libro);
+		if (repValidaciones.validarIsbn(libro.getIsbn()) > 0) {
+			throw new BadRequestException("El ISBN ya existe con otro registro, valide que el ISBN sea único.");
+		}
+	}
+
+	private void validarLibro(Libro libro) throws BadRequestException {
 		// Se valida que los datos obligatorios de la peticion sean validos
 		if (libro == null || StringUtils.isBlank(libro.getTitulo()) || StringUtils.isBlank(libro.getIsbn())
 				|| StringUtils.isBlank(libro.getSinopsis()) || !esEnteroValido(libro.getAutor())
@@ -36,7 +49,6 @@ public class LibroValidacionesServicioImpl implements LibroValidacionesServicio 
 		repValidaciones.validarGenero(libro.getGenero());
 		repValidaciones.validarIdioma(libro.getIdioma());
 		repValidaciones.validarEditorial(libro.getEditorial());
-
 	}
 
 	private boolean esEnteroValido(Integer numero) {

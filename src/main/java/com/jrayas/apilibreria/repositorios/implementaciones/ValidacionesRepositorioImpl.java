@@ -64,5 +64,15 @@ public class ValidacionesRepositorioImpl implements ValidacionesRepositorio {
 		}
 
 	}
+	
+	@Override
+	public Integer validarIsbn(String isbn) {
+		try {
+			return jdbcTemplate.queryForObject("SELECT PK_LIBRO FROM LIBROS WHERE ISBN = :ISBN",
+					new MapSqlParameterSource().addValue("ISBN", isbn), Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			return 0;
+		}
+	}
 
 }
