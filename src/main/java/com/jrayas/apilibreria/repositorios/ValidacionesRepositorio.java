@@ -8,6 +8,8 @@ public interface ValidacionesRepositorio {
 	public void validarIdioma(Integer id);
 
 	public void validarEditorial(Integer id);
-	
-	public Integer validarIsbn(String isbn);
+
+	public String validarIsbn(String isbn);
+
+	public void validarClave(String clave);
 }

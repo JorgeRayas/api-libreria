@@ -66,13 +66,24 @@ public class ValidacionesRepositorioImpl implements ValidacionesRepositorio {
 	}
 	
 	@Override
-	public Integer validarIsbn(String isbn) {
+	public String validarIsbn(String isbn) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT PK_LIBRO FROM LIBROS WHERE ISBN = :ISBN",
-					new MapSqlParameterSource().addValue("ISBN", isbn), Integer.class);
+			return jdbcTemplate.queryForObject("SELECT CLAVE_ID FROM LIBROS WHERE ISBN = :ISBN",
+					new MapSqlParameterSource().addValue("ISBN", isbn), String.class);
 		} catch (EmptyResultDataAccessException e) {
-			return 0;
+			return "";
 		}
+	}
+	
+	@Override
+	public void validarClave(String clave) {
+		try {
+			jdbcTemplate.queryForObject("SELECT CLAVE_ID FROM LIBROS WHERE CLAVE_ID = :CLAVE_ID",
+					new MapSqlParameterSource().addValue("CLAVE_ID", clave), Integer.class);
+		} catch (EmptyResultDataAccessException e) {
+			throw new NoSuchElementException("No se encontró el libro con la clave indicada");
+		}
+
 	}
 
 }
