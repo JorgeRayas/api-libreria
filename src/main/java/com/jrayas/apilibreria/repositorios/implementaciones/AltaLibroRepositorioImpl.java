@@ -1,8 +1,6 @@
 package com.jrayas.apilibreria.repositorios.implementaciones;
 
 import java.math.BigInteger;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
