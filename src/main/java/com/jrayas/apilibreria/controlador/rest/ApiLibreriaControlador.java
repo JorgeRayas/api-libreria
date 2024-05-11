@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,6 +19,7 @@ import com.jrayas.apilibreria.model.entidadesjson.CambioLibroPeticion;
 import com.jrayas.apilibreria.model.entidadesjson.ObtenerCatalogosRespuesta;
 import com.jrayas.apilibreria.servicios.AltaLibroServicio;
 import com.jrayas.apilibreria.servicios.CambioLibroServicio;
+import com.jrayas.apilibreria.servicios.EliminaLibroServicio;
 import com.jrayas.apilibreria.servicios.ObtenerCatalogosServicio;
 
 @RestController
@@ -25,14 +27,17 @@ public class ApiLibreriaControlador {
 
 	private AltaLibroServicio servAltaLibro;
 	private CambioLibroServicio servCambioLibro;
+	private EliminaLibroServicio servEliminaLibro;
 	private ObtenerCatalogosServicio servObtenerCatalogos;
 
 	public ApiLibreriaControlador(@Autowired @Qualifier("altaLibroServicio") AltaLibroServicio servAltaLibroServicio,
 			@Autowired @Qualifier("cambioLibroServicio") CambioLibroServicio servCambioLibro,
+			@Autowired @Qualifier("eliminaLibroServicio") EliminaLibroServicio servEliminaLibro,
 			@Autowired @Qualifier("obtenerCatalogosServicio") ObtenerCatalogosServicio servObtenerCatalogos) {
 		this.servAltaLibro = servAltaLibroServicio;
 		this.servCambioLibro = servCambioLibro;
 		this.servObtenerCatalogos = servObtenerCatalogos;
+		this.servEliminaLibro = servEliminaLibro;
 	}
 
 	@GetMapping("/catalogos")
@@ -50,6 +55,12 @@ public class ApiLibreriaControlador {
 	public ResponseEntity<Void> cambioLibro(@RequestBody CambioLibroPeticion peticion,
 			@PathVariable("clave_id") String clave) throws BadRequestException {
 		servCambioLibro.cambioLibro(peticion, clave);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+	}
+
+	@DeleteMapping("/libro/{clave_id}")
+	public ResponseEntity<Void> eliminarLibro(@PathVariable("clave_id") String clave) throws BadRequestException {
+		servEliminaLibro.eliminarLibro(clave);
 		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 

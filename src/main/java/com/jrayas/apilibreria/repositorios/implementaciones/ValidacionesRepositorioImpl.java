@@ -79,7 +79,7 @@ public class ValidacionesRepositorioImpl implements ValidacionesRepositorio {
 	public void validarClave(String clave) {
 		try {
 			jdbcTemplate.queryForObject("SELECT CLAVE_ID FROM LIBROS WHERE CLAVE_ID = :CLAVE_ID",
-					new MapSqlParameterSource().addValue("CLAVE_ID", clave), Integer.class);
+					new MapSqlParameterSource().addValue("CLAVE_ID", clave), String.class);
 		} catch (EmptyResultDataAccessException e) {
 			throw new NoSuchElementException("No se encontró el libro con la clave indicada");
 		}
