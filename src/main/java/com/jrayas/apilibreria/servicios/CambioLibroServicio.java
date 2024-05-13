@@ -9,6 +9,6 @@ import com.jrayas.apilibreria.model.entidadesjson.CambioLibroPeticion;
  * @author jorge
  */
 public interface CambioLibroServicio {
-    
+
     public void cambioLibro(CambioLibroPeticion cambioLibroPeticion, String clave) throws BadRequestException;
 }

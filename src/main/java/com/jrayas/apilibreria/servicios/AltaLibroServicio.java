@@ -10,6 +10,6 @@ import com.jrayas.apilibreria.model.entidadesjson.AltaLibroRespuesta;
  * @author jorge
  */
 public interface AltaLibroServicio {
-    
+
     public AltaLibroRespuesta altaLibro(AltaLibroPeticion altaLibroPeticion) throws BadRequestException;
 }

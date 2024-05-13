@@ -32,7 +32,7 @@ public class CambioLibroServicioImpl implements CambioLibroServicio {
 
 		LibroEntidad entLibro = convertirEntidad(cambioLibroPeticion.getLibro());
 		entLibro.setClave(clave);
-		
+
 		repCambioLibro.cambioLibro(entLibro);
 
 	}

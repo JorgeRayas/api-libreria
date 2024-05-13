@@ -25,7 +25,7 @@ public class EliminaLibroServicioImpl implements EliminaLibroServicio {
 				|| !StringUtils.isNumeric(clave.substring(1)) || StringUtils.length(clave) != 3) {
 			throw new BadRequestException("La clave del libro es incorrecta");
 		}
-		
+
 		repEliminaLibro.eliminaLibro(clave);
 	}
 

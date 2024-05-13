@@ -64,7 +64,7 @@ public class ValidacionesRepositorioImpl implements ValidacionesRepositorio {
 		}
 
 	}
-	
+
 	@Override
 	public String validarIsbn(String isbn) {
 		try {
@@ -74,7 +74,7 @@ public class ValidacionesRepositorioImpl implements ValidacionesRepositorio {
 			return "";
 		}
 	}
-	
+
 	@Override
 	public void validarClave(String clave) {
 		try {

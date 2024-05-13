@@ -13,6 +13,6 @@ public interface ObtenerCatalogosRepositorio {
 	public List<IdiomaEntidad> obtenerIdiomas();
 
 	public List<GeneroEntidad> obtenerGeneros();
-	
+
 	public List<EditorialEntidad> obtenerEditoriales();
 }

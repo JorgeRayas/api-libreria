@@ -51,7 +51,7 @@ public class AltaLibroServicioImpl implements AltaLibroServicio {
 	/**
 	 * Genera una clave unica alfanumerica iniciando con letra [A-Z] seguido de dos
 	 * numeros [0-9]
-	 * 
+	 *
 	 * @return clave
 	 */
 	private String generarClaveLibro() {
