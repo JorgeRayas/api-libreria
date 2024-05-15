@@ -48,7 +48,7 @@ public class ApiLibreriaControlador {
 		this.servEliminaLibro = servEliminaLibro;
 		this.servObtenerLibros = servObtenerLibros;
 	}
-	
+
 	@GetMapping("/catalogos")
 	public ResponseEntity<ObtenerCatalogosRespuesta> obtenerCatalogos() {
 		return new ResponseEntity<>(servObtenerCatalogos.obtenerCatalogos(), HttpStatus.OK);
@@ -82,13 +82,12 @@ public class ApiLibreriaControlador {
 			@RequestParam(required = false, name = "idioma") Integer idioma,
 			@RequestParam(required = false, name = "isbn") String isbn,
 			@RequestParam(required = false, name = "editorial") Integer editorial,
-			@RequestParam(required = false, name = "pagina", defaultValue = "1") Integer pagina,
 			@RequestParam(required = false, name = "fechaPublicacionInicial") LocalDate fechaInicial,
 			@RequestParam(required = false, name = "fechaPublicacionFinal") LocalDate fechaFinal)
 			throws BadRequestException {
 		ObtenerLibroEntidad peticion = ObtenerLibroEntidad.builder().clave(clave).autor(autor).genero(genero)
-				.titulo(titulo).idioma(idioma).isbn(isbn).editorial(editorial).pagina(pagina)
-				.fechaPublicacionFinal(fechaFinal).fechaPublicacionInicial(fechaInicial).build();
+				.titulo(titulo).idioma(idioma).isbn(isbn).editorial(editorial).fechaPublicacionFinal(fechaFinal)
+				.fechaPublicacionInicial(fechaInicial).build();
 		return new ResponseEntity<>(servObtenerLibros.obtenerLibros(peticion), HttpStatus.OK);
 	}
 

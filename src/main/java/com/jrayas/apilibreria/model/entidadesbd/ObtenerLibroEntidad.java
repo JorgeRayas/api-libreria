@@ -19,7 +19,6 @@ public class ObtenerLibroEntidad {
     private LocalDate fechaPublicacionInicial;
     private LocalDate fechaPublicacionFinal;
     private String isbn;
-    private Integer pagina;
     private Integer idioma;
     private Integer editorial;
 }

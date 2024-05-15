@@ -30,7 +30,6 @@ public class ObtenerLibrosServicioImpl implements ObtenerLibrosServicio {
 	public ObtenerLibrosRespuesta obtenerLibros(ObtenerLibroEntidad peticion) throws BadRequestException {
 		validaciones(peticion);
 
-		Integer totalRegistros = repObtenerLibros.obtenerTotalLibros(peticion);
 		List<LibroEntidad> listLibrosEnt = repObtenerLibros.obtenerLibros(peticion);
 
 		List<Libro> listLibros = listLibrosEnt.stream()
@@ -42,7 +41,7 @@ public class ObtenerLibrosServicioImpl implements ObtenerLibrosServicio {
 						.editorial(entLibro.getEditorial()).build())
 				.toList();
 
-		return ObtenerLibrosRespuesta.builder().totalRegistros(totalRegistros).libros(listLibros).build();
+		return ObtenerLibrosRespuesta.builder().libros(listLibros).build();
 	}
 
 	private void validaciones(ObtenerLibroEntidad peticion) throws BadRequestException {
@@ -68,7 +67,6 @@ public class ObtenerLibrosServicioImpl implements ObtenerLibrosServicio {
 		validarParametroEntero(peticion.getGenero(), "El género no es válido");
 		validarParametroEntero(peticion.getIdioma(), "El idioma no es válido");
 		validarParametroEntero(peticion.getEditorial(), "La editorial no es válida");
-		validarParametroEntero(peticion.getPagina(), "La página no es válida");
 
 		LocalDate fechaInicial = peticion.getFechaPublicacionInicial();
 		LocalDate fechaFinal = peticion.getFechaPublicacionFinal();

@@ -6,7 +6,6 @@ import java.util.NoSuchElementException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -26,13 +25,12 @@ public class ObtenerLibrosRepositorioImpl implements ObtenerLibrosRepositorio {
 
 	@Override
 	public List<LibroEntidad> obtenerLibros(ObtenerLibroEntidad entObtenerLibro) {
-		MapSqlParameterSource mapParametros = new MapSqlParameterSource("PAGINA",
-				(entObtenerLibro.getPagina() - 1) * 20);
+		MapSqlParameterSource mapParametros = new MapSqlParameterSource();
 		StringBuilder strConsulta = new StringBuilder()
 				.append("SELECT PK_LIBRO, CLAVE_ID, TITULO, FK_AUTOR, FK_GENERO,\n")
 				.append("    FECHA_PUBLICACION, ISBN, SINOPSIS, FK_PORTADA, FK_ARCHIVO,\n")
 				.append("    PAGINAS, FK_IDIOMA, PRECIO, EXISTENCIAS, FK_EDITORIAL\n").append("FROM LIBROS ")
-				.append(generarWhere(entObtenerLibro, mapParametros)).append("\nLIMIT 20 OFFSET :PAGINA;");
+				.append(generarWhere(entObtenerLibro, mapParametros)).append(";");
 		List<LibroEntidad> listEditoriales;
 		try {
 			listEditoriales = jdbcTemplate.query(strConsulta.toString(), mapParametros, new LibroEntidad());
@@ -45,19 +43,6 @@ public class ObtenerLibrosRepositorioImpl implements ObtenerLibrosRepositorio {
 		}
 
 		return listEditoriales;
-
-	}
-
-	@Override
-	public Integer obtenerTotalLibros(ObtenerLibroEntidad entObtenerLibro) {
-		MapSqlParameterSource mapParametros = new MapSqlParameterSource();
-		StringBuilder strConsulta = new StringBuilder().append("SELECT COUNT(*) FROM LIBROS ")
-				.append(generarWhere(entObtenerLibro, mapParametros));
-		try {
-			return jdbcTemplate.queryForObject(strConsulta.toString(), mapParametros, Integer.class);
-		} catch (EmptyResultDataAccessException e) {
-			throw new NoSuchElementException("No se encontraron libros con los criterios indicados");
-		}
 
 	}
 

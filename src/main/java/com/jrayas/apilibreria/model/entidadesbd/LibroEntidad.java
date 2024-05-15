@@ -24,8 +24,6 @@ public class LibroEntidad implements RowMapper<LibroEntidad> {
 	private LocalDate fechaPublicacion;
 	private String isbn;
 	private String sinopsis;
-	private String imagen;
-	private String archivo;
 	private Integer paginas;
 	private Integer idioma;
 	private Float precio;
