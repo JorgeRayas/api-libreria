@@ -27,19 +27,18 @@ public class AltaLibroRepositorioImpl implements AltaLibroRepositorio {
 	@Override
 	public Integer altaLibro(LibroEntidad libro) {
 		String strConsulta = new StringBuilder().append("INSERT INTO LIBRERIA.LIBROS \n").append(
-				"(CLAVE_ID, TITULO, FK_AUTOR, FK_GENERO, FECHA_PUBLICACION, ISBN, SINOPSIS, FK_PORTADA, FK_ARCHIVO, ")
-				.append("PAGINAS, FK_IDIOMA, PRECIO, EXISTENCIAS, FK_EDITORIAL, USUARIO_REGISTRO, USUARIO_MODIFICACION) VALUES( \n")
-				.append(":CLAVE_ID,:TITULO,:FK_AUTOR,:FK_GENERO,:FECHA_PUBLICACION,:ISBN,:SINOPSIS,:FK_PORTADA,:FK_ARCHIVO,")
+				"(CLAVE_ID, TITULO, FK_AUTOR, FK_GENERO, FECHA_PUBLICACION, ISBN, SINOPSIS, ")
+				.append("PAGINAS, FK_IDIOMA, PRECIO, EXISTENCIAS, FK_EDITORIAL, USUARIO_REGISTRO, USUARIO_MODIFICACION) ")
+				.append("VALUES(\n :CLAVE_ID,:TITULO,:FK_AUTOR,:FK_GENERO,:FECHA_PUBLICACION,:ISBN,:SINOPSIS,")
 				.append(":PAGINAS,:FK_IDIOMA,:PRECIO,:EXISTENCIAS,:FK_EDITORIAL,CURRENT_USER(),CURRENT_USER());")
 				.toString();
 		MapSqlParameterSource mapParametros = new MapSqlParameterSource().addValue("CLAVE_ID", libro.getClave())
 				.addValue("TITULO", libro.getTitulo()).addValue("FK_AUTOR", libro.getAutor())
 				.addValue("FK_GENERO", libro.getGenero())
 				.addValue("FECHA_PUBLICACION", libro.getFechaPublicacion().toString()).addValue("ISBN", libro.getIsbn())
-				.addValue("SINOPSIS", libro.getSinopsis()).addValue("FK_PORTADA", null).addValue("FK_ARCHIVO", null)
-				.addValue("PAGINAS", libro.getPaginas()).addValue("FK_IDIOMA", libro.getIdioma())
-				.addValue("PRECIO", libro.getPrecio()).addValue("EXISTENCIAS", libro.getExistencias())
-				.addValue("FK_EDITORIAL", libro.getEditorial());
+				.addValue("SINOPSIS", libro.getSinopsis()).addValue("PAGINAS", libro.getPaginas())
+				.addValue("FK_IDIOMA", libro.getIdioma()).addValue("PRECIO", libro.getPrecio())
+				.addValue("EXISTENCIAS", libro.getExistencias()).addValue("FK_EDITORIAL", libro.getEditorial());
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 

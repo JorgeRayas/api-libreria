@@ -27,10 +27,9 @@ public class ObtenerLibrosRepositorioImpl implements ObtenerLibrosRepositorio {
 	public List<LibroEntidad> obtenerLibros(ObtenerLibroEntidad entObtenerLibro) {
 		MapSqlParameterSource mapParametros = new MapSqlParameterSource();
 		StringBuilder strConsulta = new StringBuilder()
-				.append("SELECT PK_LIBRO, CLAVE_ID, TITULO, FK_AUTOR, FK_GENERO,\n")
-				.append("    FECHA_PUBLICACION, ISBN, SINOPSIS, FK_PORTADA, FK_ARCHIVO,\n")
-				.append("    PAGINAS, FK_IDIOMA, PRECIO, EXISTENCIAS, FK_EDITORIAL\n").append("FROM LIBROS ")
-				.append(generarWhere(entObtenerLibro, mapParametros)).append(";");
+				.append("SELECT PK_LIBRO, CLAVE_ID, TITULO, FK_AUTOR, FK_GENERO, FECHA_PUBLICACION, \n")
+				.append("    ISBN, SINOPSIS, PAGINAS, FK_IDIOMA, PRECIO, EXISTENCIAS, FK_EDITORIAL \n")
+				.append("FROM LIBROS ").append(generarWhere(entObtenerLibro, mapParametros)).append(";");
 		List<LibroEntidad> listEditoriales;
 		try {
 			listEditoriales = jdbcTemplate.query(strConsulta.toString(), mapParametros, new LibroEntidad());

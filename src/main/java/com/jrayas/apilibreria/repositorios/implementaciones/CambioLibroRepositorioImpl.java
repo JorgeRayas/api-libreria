@@ -1,6 +1,5 @@
 package com.jrayas.apilibreria.repositorios.implementaciones;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.dao.DataAccessException;
@@ -26,7 +25,6 @@ public class CambioLibroRepositorioImpl implements CambioLibroRepositorio {
 				.append("    TITULO = :TITULO, \n").append("    FK_AUTOR = :FK_AUTOR, \n")
 				.append("    FK_GENERO = :FK_GENERO, \n").append("    FECHA_PUBLICACION = :FECHA_PUBLICACION, \n")
 				.append("    ISBN = :ISBN, \n").append("    SINOPSIS = :SINOPSIS, \n")
-				.append("    FK_PORTADA = :FK_PORTADA, \n").append("    FK_ARCHIVO = :FK_ARCHIVO, \n")
 				.append("    PAGINAS = :PAGINAS, \n").append("    FK_IDIOMA = :FK_IDIOMA, \n")
 				.append("    PRECIO = :PRECIO, \n").append("    EXISTENCIAS = :EXISTENCIAS, \n")
 				.append("    FK_EDITORIAL = :FK_EDITORIAL, \n").append("    FECHA_MODIFICACION = CURRENT_TIMESTAMP, \n")
@@ -36,10 +34,9 @@ public class CambioLibroRepositorioImpl implements CambioLibroRepositorio {
 				.addValue("TITULO", libro.getTitulo()).addValue("FK_AUTOR", libro.getAutor())
 				.addValue("FK_GENERO", libro.getGenero())
 				.addValue("FECHA_PUBLICACION", libro.getFechaPublicacion().toString()).addValue("ISBN", libro.getIsbn())
-				.addValue("SINOPSIS", libro.getSinopsis()).addValue("FK_PORTADA", null).addValue("FK_ARCHIVO", null)
-				.addValue("PAGINAS", libro.getPaginas()).addValue("FK_IDIOMA", libro.getIdioma())
-				.addValue("PRECIO", libro.getPrecio()).addValue("EXISTENCIAS", libro.getExistencias())
-				.addValue("FK_EDITORIAL", libro.getEditorial());
+				.addValue("SINOPSIS", libro.getSinopsis()).addValue("PAGINAS", libro.getPaginas())
+				.addValue("FK_IDIOMA", libro.getIdioma()).addValue("PRECIO", libro.getPrecio())
+				.addValue("EXISTENCIAS", libro.getExistencias()).addValue("FK_EDITORIAL", libro.getEditorial());
 
 		try {
 			jdbcTemplate.update(strConsulta, mapParametros);
