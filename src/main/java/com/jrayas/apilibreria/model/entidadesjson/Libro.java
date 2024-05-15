@@ -2,6 +2,7 @@ package com.jrayas.apilibreria.model.entidadesjson;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -20,6 +21,7 @@ public class Libro {
     private String titulo;
     private Integer autor;
     private Integer genero;
+    @JsonFormat(pattern="yyyy-MM-dd")
     private LocalDate fechaPublicacion;
     private String isbn;
     private String sinopsis;
