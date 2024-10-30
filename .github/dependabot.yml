@@ -1,0 +1,6 @@
+version: 2
+updates:
+  - package-ecosystem: "maven"
+    directory: "/" # Cambia si tu archivo pom.xml está en un subdirectorio
+    schedule:
+      interval: "weekly" # Puede ser "daily", "weekly" o "monthly"
